@@ -6,7 +6,6 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction'
 import HomeIcon from '@mui/icons-material/Home'
 import EditOffIcon from '@mui/icons-material/EditOff'
 import GroupIcon from '@mui/icons-material/Group'
-import { URL_ROOT } from '../../../config'
 
 type NavigationsListItem = {
   label: string
@@ -37,7 +36,7 @@ export default function CustomBottomNavigation(): JSX.Element {
   ]
 
   useEffect(() => {
-    navigate(`${URL_ROOT}/${value}`)
+    navigate(`/${value}`)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value])
 
