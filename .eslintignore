@@ -1,0 +1,9 @@
+node_modules/
+docs/
+public/
+
+.eslintrc.json
+.prettierrc.json
+.stylelintrc.json
+
+vite.config.ts

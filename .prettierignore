@@ -1,0 +1,25 @@
+# Ignore artifacts:
+build
+coverage
+public
+
+
+# Ignore all HTML files:
+*.html
+
+
+package.json
+yarn.lock
+node_modules
+
+
+docs
+public
+
+.eslintrc.json
+.prettierrc.json
+.stylelintrc.json
+
+*.css
+*.scss
+*.less
