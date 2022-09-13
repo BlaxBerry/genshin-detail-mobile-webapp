@@ -8,3 +8,24 @@
 - [Material UI]() v5+
 - [Sass]()
 - [React Query]() v3+
+
+## Folders
+
+```js
+|- docs  // github page
+|- src
+    |- assets
+    |- components
+        |- Common
+        |- Layout
+        |- Routes // route views
+        |- ReactQueryClient  // query client Provider
+        |- Themes  // material ui theme Provider
+    |- hooks
+    |- styles
+    |- App.tsx
+    |- main.tsx
+|- index.html
+|- package.json
+|- ...
+```

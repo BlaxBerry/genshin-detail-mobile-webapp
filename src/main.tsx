@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import ThemeProvider from './components/Themes/ThemeProvider'
-import ReactQueryClient from './components/QueryClientProvider'
+import ReactQueryClient from './components/ReactQueryClient/QueryClientProvider'
 import './styles/index.scss'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
