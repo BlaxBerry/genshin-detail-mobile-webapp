@@ -11,18 +11,7 @@ export default function ThemeChanger() {
   const colorMode = React.useContext(ColorModeContext)
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        bgcolor: 'background.default',
-        color: 'text.primary',
-        borderRadius: 1,
-        p: 3,
-      }}
-    >
+    <div>
       {theme.palette.mode} mode
       <IconButton
         sx={{ ml: 1 }}
@@ -35,6 +24,6 @@ export default function ThemeChanger() {
           <Brightness4Icon />
         )}
       </IconButton>
-    </Box>
+    </div>
   )
 }

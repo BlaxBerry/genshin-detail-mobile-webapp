@@ -1,0 +1,21 @@
+@import "./common";
+
+
+.background-light-mode {
+    @include mask;
+
+    background: url("../assets/images/bg-img-light.jpeg") no-repeat 65%;
+    background-size: cover;
+
+    transition: all 0.5s;
+}
+
+
+.background-dark-mode {
+    @include mask;
+
+    background: url("../assets/images/bg-img-dark.jpeg") no-repeat 65%;
+    background-size: cover;
+
+    transition: all 0.5s;
+}

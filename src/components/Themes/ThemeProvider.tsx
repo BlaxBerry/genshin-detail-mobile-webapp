@@ -38,7 +38,7 @@ export default function CustomerThemeProvider({
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <main>{children}</main>
+        {children}
       </ThemeProvider>
     </ColorModeContext.Provider>
   )
