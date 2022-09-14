@@ -1,15 +1,16 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useQuery } from 'react-query'
 import ImageList from '@mui/material/ImageList'
 import ImageListItem from '@mui/material/ImageListItem'
-import { useQuery } from 'react-query'
-import { fetchCharacter } from '../../../apis/character'
 import Paper from '@mui/material/Paper'
-import Grid from '@mui/material/Grid'
 import Skeleton from '@mui/material/Skeleton'
+import { Troubleshoot } from '@mui/icons-material'
+import { fetchCharacter } from '../../../apis/character'
 
 interface ImageListProps {
   dataSource: string[]
+  loading: boolean
 }
 
 interface ImageListItemProps {
@@ -28,7 +29,13 @@ const CustomImageListItem = React.memo(function CustomImageListItem({
   } = useQuery(['characters-list-item', name], () => fetchCharacter(name))
 
   return (
-    <ImageListItem onClick={() => navigate(`/characters/${name}`)}>
+    <ImageListItem
+      onClick={() =>
+        navigate(`/character/${name}`, {
+          state: { hiddenBottomNaviation: Troubleshoot },
+        })
+      }
+    >
       <Paper
         elevation={10}
         style={{
@@ -63,8 +70,10 @@ const CustomImageListItem = React.memo(function CustomImageListItem({
   )
 })
 
-function CustomImageList({ dataSource }: ImageListProps): JSX.Element {
-  if (!dataSource || !(dataSource instanceof Array)) return <>无数据</>
+function CustomImageList({ dataSource, loading }: ImageListProps): JSX.Element {
+  if (loading) return <>Loading...</>
+  if (!loading && (!dataSource || !(dataSource instanceof Array)))
+    return <>无数据</>
 
   return (
     <ImageList

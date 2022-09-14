@@ -15,9 +15,9 @@ export default function RouteView() {
       <Route path={`/home`} element={<Home />} />
 
       <Route path={`/characters`} element={<CharacterList />} />
-      <Route path={`/characters/:name`} element={<CharacterDetail />} />
+      <Route path={`/character/:name`} element={<CharacterDetail />} />
       <Route path={`/weapons`} element={<WeaponList />} />
-      <Route path={`/weapons/:name`} element={<WeaponDetail />} />
+      <Route path={`/weapon/:name`} element={<WeaponDetail />} />
 
       <Route path={`/404`} element={<Error404 />} />
       <Route path={`/500`} element={<Error500 />} />
