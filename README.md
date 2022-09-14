@@ -32,6 +32,8 @@
 
 ## Images
 
-![](./public/images/character-detail-1.png)
+![](./public/images/1.png)
 
-![](./public/images/character-detail-2.png)
+![](./public/images/2.png)
+
+![](./public/images/4.png)

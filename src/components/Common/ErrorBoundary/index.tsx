@@ -31,7 +31,7 @@ const ErrorFallback: React.FC<FallbackProps> = ({
       />
       <div style={{ textAlign: 'center' }}>
         <h2>页面数据出错了</h2>
-        <h2>可能是服务器崩了 ( ￣_￣ ")</h2>
+        <h2>{'可能是服务器崩了 ( ￣_￣ ")'}</h2>
         <Button
           variant="contained"
           onClick={() => {

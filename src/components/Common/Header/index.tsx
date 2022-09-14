@@ -9,6 +9,7 @@ import SettingsIcon from '@mui/icons-material/Settings'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+import GitHubIcon from '@mui/icons-material/GitHub'
 import ThemeChanger from '../../Themes/ThemeChanger'
 import { ColorModeContext } from '../../Themes/ThemeProvider'
 import { getPageTitle } from '../../../utils'
@@ -84,7 +85,12 @@ export default function Header() {
             >
               <ThemeChanger />
             </MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
+            <MenuItem onClick={handleClose}>
+              <IconButton sx={{ mr: 1 }} color="inherit">
+                <GitHubIcon />
+              </IconButton>
+              Github
+            </MenuItem>
           </Menu>
         </div>
       </Toolbar>

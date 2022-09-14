@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import Box from '@mui/material/Box'
 import Tab from '@mui/material/Tab'
@@ -9,12 +9,15 @@ import ListItemText from '@mui/material/ListItemText'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
 import Avatar from '@mui/material/Avatar'
 import { getElementColor } from '../../../utils'
+import Divider from '@mui/material/Divider'
+import { TabPanel1, TabPanel2, TabPanel3, TabPanel4 } from '../../Characters'
 
 interface CustomTabsProps {
   dataSource: { [key: string]: unknown }
   constellations: {
     [key: string]: string
   }[]
+  talents: { [key: string]: unknown }
 }
 
 interface CustomTabPanelProps {
@@ -32,6 +35,7 @@ const TabPanel = React.memo(function TabPanel(props: CustomTabPanelProps) {
       hidden={value !== index}
       id={`tabpanel-${index}`}
       className="my-tab-panel"
+      style={{ height: '510px', overflow: 'scroll' }}
       {...other}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
@@ -42,15 +46,17 @@ const TabPanel = React.memo(function TabPanel(props: CustomTabPanelProps) {
 export default React.memo(function CustomTabs({
   dataSource,
   constellations,
+  talents,
 }: CustomTabsProps) {
   const [value, setValue] = useState<number>(0)
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
+
   return (
     <>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange}>
+        <Tabs value={value} onChange={handleChange} centered>
           <Tab label="天赋" />
           <Tab label="命座" />
           <Tab label="材料" />
@@ -60,39 +66,12 @@ export default React.memo(function CustomTabs({
 
       {/* 1. 天赋*/}
       <TabPanel value={value} index={0}>
-        Item Two
+        <TabPanel1 talents={talents} />
       </TabPanel>
 
       {/* 2. 命座 */}
       <TabPanel value={value} index={1}>
-        <List sx={{ width: '100%', maxWidth: 360 }}>
-          {constellations instanceof Array &&
-            constellations.length > 0 &&
-            constellations?.map((item) => (
-              <ListItem key={item.name}>
-                <ListItemAvatar>
-                  <Avatar
-                    src={item?.image}
-                    sx={{
-                      // @ts-ignore
-                      bgcolor: getElementColor(dataSource?.element),
-                      width: 50,
-                      height: 50,
-                      marginRight: '1rem',
-                    }}
-                  />
-                </ListItemAvatar>
-
-                <div>
-                  <ListItemText primary={item?.name} />
-                  {/* @ts-ignore */}
-                  <ReactMarkdown style={{ margin: 0 }}>
-                    {item?.effect}
-                  </ReactMarkdown>
-                </div>
-              </ListItem>
-            ))}
-        </List>
+        <TabPanel2 dataSource={dataSource} constellations={constellations} />
       </TabPanel>
 
       {/* 3. 材料 */}
@@ -111,10 +90,6 @@ export default React.memo(function CustomTabs({
           src={dataSource?.images?.cover2 || dataSource?.images?.card}
           style={{ padding: 0 }}
         />
-      </TabPanel>
-
-      <TabPanel value={value} index={3}>
-        Item Two
       </TabPanel>
     </>
   )

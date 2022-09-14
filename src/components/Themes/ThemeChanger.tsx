@@ -1,19 +1,22 @@
-import React from 'react'
+import { useMemo } from 'react'
 import IconButton from '@mui/material/IconButton'
 import { useTheme } from '@mui/material/styles'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
-import { ColorModeContext } from './ThemeProvider'
+// import { ColorModeContext } from './ThemeProvider'
 
 export default function ThemeChanger() {
   const theme = useTheme()
   // const colorMode = React.useContext(ColorModeContext)
+  const ThemeName = useMemo(() => {
+    if (theme.palette.mode === 'dark') return '暗黑主题'
+    return '明亮主题'
+  }, [theme.palette.mode])
 
   return (
     <div>
-      {theme.palette.mode} 主题
       <IconButton
-        sx={{ ml: 1 }}
+        sx={{ mr: 1 }}
         color="inherit"
         // onClick={colorMode.toggleColorMode}
       >
@@ -23,6 +26,8 @@ export default function ThemeChanger() {
           <Brightness4Icon />
         )}
       </IconButton>
+
+      {ThemeName}
     </div>
   )
 }

@@ -21,7 +21,7 @@ export const getElementColor = (element: string): string => {
     case '火':
       return '#520202'
     case '水':
-      return '#0b71b5e'
+      return '#0b71b5'
     case '冰':
       return '#8ec7f5'
     case '风':

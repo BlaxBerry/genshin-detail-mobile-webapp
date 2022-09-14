@@ -1,11 +1,14 @@
+import { useMemo } from 'react'
+import { useQuery } from 'react-query'
+import { useLocation } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Rating from '@mui/material/Rating'
 import Skeleton from '@mui/material/Skeleton'
-import { useMemo } from 'react'
-import { useEffect } from 'react'
-import { useQuery } from 'react-query'
-import { useLocation } from 'react-router-dom'
-import { fetchCharacter, fetchConstellations } from '../../apis/character'
+import {
+  fetchCharacter,
+  fetchConstellations,
+  fetchTalents,
+} from '../../apis/character'
 import { CharacterInfo, Tabs } from '../../components/Common'
 
 export default function CharacterDetail() {
@@ -25,6 +28,12 @@ export default function CharacterDetail() {
     isLoading: constellationsQueryIsLoading,
     isError: constellationsQueryIsError,
   } = useQuery(['constellations', name], () => fetchConstellations(name))
+
+  const {
+    data: talentsData,
+    isLoading: talentsQueryIsLoading,
+    isError: talentsQueryIsError,
+  } = useQuery(['talents', name], () => fetchTalents(name))
 
   const constellations = useMemo(() => {
     let list = []
@@ -132,7 +141,11 @@ export default function CharacterDetail() {
       </CharacterInfo>
 
       {/* tabs  */}
-      <Tabs dataSource={characterData} constellations={constellations} />
+      <Tabs
+        dataSource={characterData}
+        constellations={constellations}
+        talents={talentsData}
+      />
     </>
   )
 }
