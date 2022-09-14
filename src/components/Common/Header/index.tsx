@@ -1,27 +1,24 @@
 import React from 'react'
 import { useMemo } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useTheme } from '@mui/material/styles'
 import IconButton from '@mui/material/IconButton'
 import MenuItem from '@mui/material/MenuItem'
 import Menu from '@mui/material/Menu'
 import SettingsIcon from '@mui/icons-material/Settings'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import ThemeChanger from '../../Themes/ThemeChanger'
+import { ColorModeContext } from '../../Themes/ThemeProvider'
+import { getPageTitle } from '../../../utils'
 
 export default function Header() {
   const { pathname } = useLocation()
-  const title = useMemo(
-    (): string => pathname.split('/')[pathname.split('/').length - 1],
-    [pathname]
-  )
+  const navigate = useNavigate()
+  const title = useMemo((): string => pathname.split('/')[1], [pathname])
 
-  const [auth, setAuth] = React.useState(true)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAuth(event.target.checked)
-  }
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -31,11 +28,19 @@ export default function Header() {
     setAnchorEl(null)
   }
 
+  const theme = useTheme()
+  const colorMode = React.useContext(ColorModeContext)
+
   return (
     <AppBar position="static" color="transparent" style={{ boxShadow: 'none' }}>
       <Toolbar variant="dense" style={{ padding: 0 }}>
-        {/* title */}
-        <div style={{ flexGrow: 1 }}>{decodeURI(title)}</div>
+        {/* left title */}
+        <div style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+          {pathname.split('/').length >= 3 && (
+            <ArrowBackIosIcon onClick={() => navigate(-1)} />
+          )}
+          <h3>{getPageTitle(decodeURI(title))}</h3>
+        </div>
 
         {/* setting dropdown menu */}
         <div>
@@ -64,7 +69,12 @@ export default function Header() {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>
+            <MenuItem
+              onClick={() => {
+                colorMode.toggleColorMode()
+                handleClose()
+              }}
+            >
               <ThemeChanger />
             </MenuItem>
             <MenuItem onClick={handleClose}>My account</MenuItem>

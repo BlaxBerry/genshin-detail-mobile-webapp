@@ -21,6 +21,7 @@ const TabPanel = React.memo(function TabPanel(props: CustomTabPanelProps) {
       role="tabpanel"
       hidden={value !== index}
       id={`tabpanel-${index}`}
+      className="my-tab-panel"
       {...other}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
@@ -40,6 +41,7 @@ export default React.memo(function CustomTabs({ dataSource }: CustomTabsProps) {
           <Tab label="天赋命座" />
           <Tab label="升级材料" />
           <Tab label="立绘图片" />
+          <Tab label="详细信息" />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -48,8 +50,21 @@ export default React.memo(function CustomTabs({ dataSource }: CustomTabsProps) {
       <TabPanel value={value} index={1}>
         Item Two
       </TabPanel>
+
       <TabPanel value={value} index={2}>
-        Item Three
+        <Box
+          component="img"
+          sx={{ width: '92vw' }}
+          // @ts-ignore
+          alt={dataSource?.fullname}
+          // @ts-ignore
+          src={dataSource?.images?.cover2 || dataSource?.images?.card}
+          style={{ padding: 0 }}
+        />
+      </TabPanel>
+
+      <TabPanel value={value} index={3}>
+        Item Two
       </TabPanel>
     </>
   )

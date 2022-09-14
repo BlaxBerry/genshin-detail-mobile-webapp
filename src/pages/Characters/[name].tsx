@@ -1,12 +1,12 @@
 import Box from '@mui/material/Box'
+import Rating from '@mui/material/Rating'
 import Skeleton from '@mui/material/Skeleton'
-
-import { useMemo, useState } from 'react'
-import { useEffect, useLayoutEffect } from 'react'
+import { useMemo } from 'react'
+import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
 import { fetchCharacter } from '../../apis/character'
-import { Tabs } from '../../components/Common'
+import { CharacterInfo, Tabs } from '../../components/Common'
 
 export default function CharacterDetail() {
   const { pathname } = useLocation()
@@ -18,7 +18,7 @@ export default function CharacterDetail() {
     data: characterData,
     isLoading: characterQueryIsLoading,
     isError: characterQueryIsError,
-  } = useQuery('character', () => fetchCharacter(name))
+  } = useQuery(['character', name], () => fetchCharacter(name))
 
   useEffect(() => {
     if (characterQueryIsError) throw new Error('请求出错了')
@@ -26,57 +26,98 @@ export default function CharacterDetail() {
 
   console.log(characterData)
 
-  const icon = useMemo(
-    () => characterData?.images?.icon,
-    [characterData?.images]
-  )
+  const LeftDescription = useMemo((): JSX.Element => {
+    return (
+      <div
+        style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-start',
+        }}
+      >
+        {/* title & name */}
+        {!characterData?.fullname && (
+          <>
+            <Skeleton variant="text" width={100} />
+            <Skeleton variant="text" width={100} sx={{ fontSize: '24px' }} />
+          </>
+        )}
+        {characterData?.fullname && (
+          <>
+            <span>{characterData?.title}</span>
+            <div style={{ fontSize: '24px' }}>{characterData?.fullname}</div>
+          </>
+        )}
+
+        {/* description */}
+        <div>
+          {!characterData?.description && (
+            <>
+              <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} />
+              <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} />
+              <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} />
+            </>
+          )}
+          {characterData?.description && (
+            <span style={{ fontSize: '0.8rem' }}>
+              {characterData?.description}
+            </span>
+          )}
+        </div>
+      </div>
+    )
+  }, [
+    characterData?.title,
+    characterData?.fullname,
+    characterData?.description,
+  ])
+
+  const RightIcon = useMemo((): JSX.Element => {
+    return (
+      <div style={{ padding: 10 }}>
+        {!characterData?.images?.icon && (
+          <Skeleton variant="rounded" width={120} height={120} />
+        )}
+        {characterData?.images?.icon && (
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <Box
+              component="img"
+              sx={{ width: '120px', height: '120px' }}
+              alt={characterData?.fullname}
+              src={characterData?.images?.icon}
+            />
+            <Rating
+              defaultValue={Number(characterData?.rarity)}
+              max={Number(characterData?.rarity)}
+              readOnly
+            />
+          </div>
+        )}
+      </div>
+    )
+  }, [
+    characterData?.images?.icon,
+    characterData?.rarity,
+    characterData?.fullname,
+  ])
 
   return (
     <>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
-        <div style={{ flex: 1 }}>
-          {/* title & name */}
-          <h2>
-            {!characterData?.fullname && (
-              <Skeleton
-                variant="text"
-                sx={{ fontSize: '24px', margin: '0.83rem 0' }}
-              />
-            )}
-            {characterData && (
-              <>
-                {characterData?.title} {characterData?.fullname}
-              </>
-            )}
-          </h2>
-
-          {/* description */}
-          <div>
-            {!characterData?.description && (
-              <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
-            )}
-            {characterData?.description && <> {characterData?.description}</>}
-          </div>
-        </div>
-        {!icon && <Skeleton variant="rounded" width={120} height={120} />}
-        {icon && (
-          <Box
-            component="img"
-            sx={{ width: '120px', height: '120px' }}
-            alt={name}
-            src={icon}
-          />
-        )}
-      </div>
+      <CharacterInfo>
+        {/* left */}
+        {LeftDescription}
+        {/* right */}
+        {RightIcon}
+      </CharacterInfo>
 
       {/* tabs  */}
-      <Tabs />
+      <Tabs dataSource={characterData} />
     </>
   )
 }
