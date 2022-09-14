@@ -86,8 +86,14 @@ export default React.memo(function CustomTabs({
           sx={{ width: '92vw', maxWidth: '390px' }}
           // @ts-ignore
           alt={dataSource?.fullname}
-          // @ts-ignore
-          src={dataSource?.images?.cover2 || dataSource?.images?.card}
+          src={
+            // @ts-ignore
+            dataSource?.images?.portrait ||
+            // @ts-ignore
+            dataSource?.images?.cover2 ||
+            // @ts-ignore
+            dataSource?.images?.card
+          }
           style={{ padding: 0 }}
         />
       </TabPanel>
