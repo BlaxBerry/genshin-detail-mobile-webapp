@@ -1,20 +1,18 @@
-import { Link } from '@mui/material'
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import Button from '@mui/material/Button'
+import { useQuery } from 'react-query'
+import { fetchCharacter } from '../../apis/character'
+import { ImageList } from '../../components/Common'
 
 export default function CharacterList() {
-  const navigate = useNavigate()
-
-  const onClick = () => navigate('/character/xxxx')
+  const {
+    data: charactersData,
+    isLoading: charactersQueryIsLoading,
+    isError: charactersQueryIsError,
+  } = useQuery('character', () => fetchCharacter('5'))
 
   return (
     <div>
-      Character list
-      <br />
-      <Button variant="contained" onClick={onClick}>
-        Contained
-      </Button>
+      <ImageList dataSource={charactersData} />
     </div>
   )
 }

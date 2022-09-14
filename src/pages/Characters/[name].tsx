@@ -8,7 +8,7 @@ export default function CharacterDetail() {
     data: characterData,
     isLoading: characterQueryIsLoading,
     isError: characterQueryIsError,
-  } = useQuery('character', () => fetchCharacter({ name: '迪卢克' }))
+  } = useQuery('character', () => fetchCharacter('迪卢克'))
 
   console.log(!!characterData, characterQueryIsLoading)
 

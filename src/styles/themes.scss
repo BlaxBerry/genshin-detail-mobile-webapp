@@ -2,20 +2,39 @@
 
 
 .background-light-mode {
-    @include mask;
-
-    background: url("../assets/images/bg-img-light.jpeg") no-repeat 65%;
-    background-size: cover;
-
+    position: relative;
     transition: all 0.5s;
+
+    &::before {
+        background: url("../assets/images/bg-img-light.jpeg") no-repeat 65%;
+        background-size: cover;
+        content: "";
+        height: 100vh;
+        left: 0;
+        position: fixed;
+        top: 0;
+        transition: all 0.5s;
+        width: 100%;
+        z-index: -1;
+    }
 }
 
 
 .background-dark-mode {
-    @include mask;
-
-    background: url("../assets/images/bg-img-dark.jpeg") no-repeat 65%;
-    background-size: cover;
-
+    position: relative;
     transition: all 0.5s;
+
+    &::before {
+        background: url("../assets/images/bg-img-dark.jpeg") no-repeat 65%;
+        background-size: cover;
+        content: "";
+        height: 100vh;
+        left: 0;
+        position: fixed;
+        top: 0;
+        transition: all 0.5s;
+        width: 100%;
+        z-index: -1;
+        
+    }
 }

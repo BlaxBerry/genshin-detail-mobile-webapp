@@ -6,7 +6,7 @@
     $mask-color: rgba(#000, 0.1);
     position: relative;
 
-    &::before {
+    &::after {
         background-color: $mask-color;
         content: "";
         display: block;

@@ -1,11 +1,13 @@
-@import './themes';
+@import "./common";
+@import "./themes";
+@import "./my-style/index";
 
 html {
-    max-width: 444px;
-    margin: 0 auto;
     background: #f5f5f5!important;
+    margin: 0 auto;
+    max-width: 444px;
 }
 
-.main-content {
-    min-height: 100vh;
+body {
+    background-color: transparent!important;
 }

@@ -7,10 +7,7 @@ interface fetchCharacterParamsType {
 /**
  * 角色相关信息查询
  */
-export const fetchCharacter = async ({
-  name,
-  status,
-}: fetchCharacterParamsType) => {
-  const res = await fetch(`${URL}?query=${name}&status=${status}`)
+export const fetchCharacter = async (value: string) => {
+  const res = await fetch(`${URL}?query=${value}`)
   return res.json()
 }
