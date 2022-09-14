@@ -5,7 +5,7 @@ import { useMemo } from 'react'
 import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
-import { fetchCharacter } from '../../apis/character'
+import { fetchCharacter, fetchConstellations } from '../../apis/character'
 import { CharacterInfo, Tabs } from '../../components/Common'
 
 export default function CharacterDetail() {
@@ -20,11 +20,25 @@ export default function CharacterDetail() {
     isError: characterQueryIsError,
   } = useQuery(['character', name], () => fetchCharacter(name))
 
-  useEffect(() => {
-    if (characterQueryIsError) throw new Error('请求出错了')
-  }, [characterQueryIsError])
+  const {
+    data: constellationsData,
+    isLoading: constellationsQueryIsLoading,
+    isError: constellationsQueryIsError,
+  } = useQuery(['constellations', name], () => fetchConstellations(name))
 
-  console.log(characterData)
+  const constellations = useMemo(() => {
+    let list = []
+    for (const item in constellationsData) {
+      if (item !== 'name' && item !== 'images' && item !== 'version') {
+        list.push({
+          name: constellationsData[item].name,
+          effect: constellationsData[item].effect,
+          image: constellationsData.images[item],
+        })
+      }
+    }
+    return list
+  }, [constellationsData])
 
   const LeftDescription = useMemo((): JSX.Element => {
     return (
@@ -118,7 +132,7 @@ export default function CharacterDetail() {
       </CharacterInfo>
 
       {/* tabs  */}
-      <Tabs dataSource={characterData} />
+      <Tabs dataSource={characterData} constellations={constellations} />
     </>
   )
 }

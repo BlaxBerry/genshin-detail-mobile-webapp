@@ -32,7 +32,13 @@ export default function Header() {
   const colorMode = React.useContext(ColorModeContext)
 
   return (
-    <AppBar position="static" color="transparent" style={{ boxShadow: 'none' }}>
+    <AppBar
+      position="static"
+      color="transparent"
+      style={{
+        boxShadow: 'none',
+      }}
+    >
       <Toolbar variant="dense" style={{ padding: 0 }}>
         {/* left title */}
         <div

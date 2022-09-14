@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { useQuery } from 'react-query'
 import { fetchCharacter } from '../../apis/character'
-import { ImageList } from '../../components/Common'
+import { CharactersList } from '../../components/Common'
 
 export default function CharacterList() {
   const {
@@ -25,7 +25,7 @@ export default function CharacterList() {
 
   return (
     <div>
-      <ImageList
+      <CharactersList
         dataSource={dattSource}
         loading={charactersQuery5IsLoading && charactersQuery4IsLoading}
       />

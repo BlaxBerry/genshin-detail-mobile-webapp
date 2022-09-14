@@ -1,13 +1,19 @@
-const URL = 'https://api.minigg.cn/characters'
-
-interface fetchCharacterParamsType {
-  name: string
-  status?: number
-}
 /**
  * 角色相关信息查询
+ * @param value 角色名
+ * @returns
  */
 export const fetchCharacter = async (value: string) => {
-  const res = await fetch(`${URL}?query=${value}`)
+  const res = await fetch(`https://api.minigg.cn/characters?query=${value}`)
+  return res.json()
+}
+
+/**
+ * 角色命座相关
+ * @param value 角色名
+ * @returns
+ */
+export const fetchConstellations = async (value: string) => {
+  const res = await fetch(`https://api.minigg.cn/constellations?query=${value}`)
   return res.json()
 }

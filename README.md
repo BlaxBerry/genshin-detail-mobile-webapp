@@ -29,3 +29,9 @@
 |- package.json
 |- ...
 ```
+
+## Images
+
+![](./public/images/character-detail-1.png)
+
+![](./public/images/character-detail-2.png)

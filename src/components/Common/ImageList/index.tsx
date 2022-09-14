@@ -1,1 +1,2 @@
-export { default as ImageList } from './ImageList'
+export { default as CharactersList } from './CharactersList'
+export { default as WeaponsList } from './WeaponsList'

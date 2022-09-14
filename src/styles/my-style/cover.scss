@@ -6,3 +6,17 @@
         padding: 0!important;
     }
 }
+
+.MuiListItem-root {
+    min-height: 150px;
+
+    .MuiListItemText-root {
+        span {
+            font-size: 1.1rem;
+            font-weight: 700!important;
+        }
+    }
+    p {
+        margin: 0!important;
+    }
+}
