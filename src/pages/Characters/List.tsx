@@ -12,7 +12,10 @@ export default function CharacterList() {
 
   return (
     <div>
-      <ImageList dataSource={charactersData} loading={charactersQueryIsLoading}/>
+      <ImageList
+        dataSource={charactersData}
+        loading={charactersQueryIsLoading}
+      />
     </div>
   )
 }
