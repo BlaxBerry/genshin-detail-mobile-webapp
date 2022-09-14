@@ -84,6 +84,7 @@ export default function CharacterDetail() {
             style={{
               display: 'flex',
               flexDirection: 'column',
+              alignItems: 'center',
             }}
           >
             <Box

@@ -54,7 +54,7 @@ export default React.memo(function CustomTabs({ dataSource }: CustomTabsProps) {
       <TabPanel value={value} index={2}>
         <Box
           component="img"
-          sx={{ width: '92vw' }}
+          sx={{ width: '92vw', maxWidth: '390px' }}
           // @ts-ignore
           alt={dataSource?.fullname}
           // @ts-ignore

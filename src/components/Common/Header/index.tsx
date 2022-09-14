@@ -35,10 +35,11 @@ export default function Header() {
     <AppBar position="static" color="transparent" style={{ boxShadow: 'none' }}>
       <Toolbar variant="dense" style={{ padding: 0 }}>
         {/* left title */}
-        <div style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
-          {pathname.split('/').length >= 3 && (
-            <ArrowBackIosIcon onClick={() => navigate(-1)} />
-          )}
+        <div
+          style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}
+          onClick={() => navigate(-1)}
+        >
+          {pathname.split('/').length >= 3 && <ArrowBackIosIcon />}
           <h3>{getPageTitle(decodeURI(title))}</h3>
         </div>
 
