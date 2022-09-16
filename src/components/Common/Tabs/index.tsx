@@ -68,7 +68,7 @@ export default React.memo(function CustomTabs({
 
       {/* 3. 材料 */}
       <TabPanel value={value} index={2}>
-        Item Two
+        <TabPanel3 costs={dataSource?.costs} />
       </TabPanel>
 
       {/* 4. 立绘图片 */}

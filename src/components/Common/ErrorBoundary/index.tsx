@@ -6,6 +6,7 @@ import Link from '@mui/material/Link'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary'
 import Img from '../../../assets/images/confuse.jpg'
+import BgK from '../../../assets/images/bg-img-dark.jpeg'
 
 interface CustomErrorBoundaryProps {
   children: ReactNode
@@ -22,18 +23,25 @@ const ErrorFallback: React.FC<FallbackProps> = ({
 }) => {
   const navigate = useNavigate()
   return (
-    <>
+    <div className="my-error-boundary">
       <Box
         component="img"
         sx={{ width: '100vw', maxWidth: '390px' }}
         src={Img}
-        style={{ paddingTop: 35 }}
       />
-      <div style={{ textAlign: 'center' }}>
-        <h2>页面数据出错了</h2>
+      <div>
+        <h2>无法获取数据</h2>
         <h2>{'可能是服务器崩了 ( ￣_￣ ")'}</h2>
+      </div>
+      <div
+        style={{
+          padding: '0 1rem',
+          margin: '30% 0 0',
+        }}
+      >
         <Button
           variant="contained"
+          style={{ width: '100%' }}
           onClick={() => {
             navigate('/', { replace: true })
             navigate(0)
@@ -58,7 +66,7 @@ const ErrorFallback: React.FC<FallbackProps> = ({
           联系我
         </Link>
       </div>
-    </>
+    </div>
   )
 }
 

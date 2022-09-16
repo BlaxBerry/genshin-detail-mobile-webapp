@@ -85,9 +85,9 @@ const CustomImageListItem = React.memo(function CustomImageListItem({
 })
 
 function CustomImageList({ dataSource, loading }: ImageListProps): JSX.Element {
-  if (loading) return <>Loading...</>
-  if (!loading && (!dataSource || !(dataSource instanceof Array)))
-    return <>无数据</>
+  // if (loading) return <>Loading...</>
+  // if (!loading && (!dataSource || !(dataSource instanceof Array)))
+  //   return <>无数据</>
 
   return (
     <ImageList

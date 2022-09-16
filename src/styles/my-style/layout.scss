@@ -3,3 +3,19 @@
     min-height: 100vh;
 }
 
+
+.my-error-boundary {
+    background: url("../assets/images/bg-img-dark.jpeg") no-repeat center;
+    background-size: cover;
+    color: #fff;
+    min-height: 100vh;
+    text-align: center;
+
+    img {
+        margin-top: 20%;
+    }
+
+    a {
+        color: #fff;
+    }
+}

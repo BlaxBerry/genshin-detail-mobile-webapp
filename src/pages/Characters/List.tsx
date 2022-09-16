@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useQuery } from 'react-query'
 import { fetchCharacter } from '../../apis/character'
 import { CharactersList } from '../../components/Common'

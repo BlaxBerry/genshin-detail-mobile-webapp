@@ -46,6 +46,8 @@ const CustomImageListItem = React.memo(function CustomImageListItem({
           justifyContent: 'center',
           alignItems: 'center',
           background: 'rgba(250, 250, 250, 0.5)',
+          width: '85px',
+          height: '85px',
         }}
       >
         {!weaponsData?.images?.icon && (
@@ -91,9 +93,9 @@ const CustomImageListItem = React.memo(function CustomImageListItem({
 })
 
 function CustomImageList({ dataSource, loading }: ImageListProps): JSX.Element {
-  if (loading) return <>Loading...</>
-  if (!loading && (!dataSource || !(dataSource instanceof Array)))
-    return <>无数据</>
+  // if (loading) return <>Loading...</>
+  // if (!loading && (!dataSource || !(dataSource instanceof Array)))
+  //   return <>无数据</>
 
   return (
     <ImageList cols={4}>
