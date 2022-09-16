@@ -37,7 +37,7 @@ const TabPanel = React.memo(function TabPanel({
           {/* @ts-ignore */}
           {!talent?.name && !talent?.info && (
             <>
-              {[...new Array(4)].map((e, i) => (
+              {[...new Array(10)].map((e, i) => (
                 <Skeleton
                   key={i}
                   variant="text"

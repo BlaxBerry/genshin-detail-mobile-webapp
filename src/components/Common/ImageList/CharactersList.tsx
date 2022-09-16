@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import ImageList from '@mui/material/ImageList'
@@ -7,6 +7,9 @@ import Paper from '@mui/material/Paper'
 import Skeleton from '@mui/material/Skeleton'
 import { Troubleshoot } from '@mui/icons-material'
 import { fetchCharacter } from '../../../apis/character'
+import { getCharacterBackgroundColor } from '../../../utils'
+import Badge from '@mui/material/Badge'
+import CharacterElement from '../Badges/CharacterElement'
 
 interface ImageListProps {
   dataSource: string[]
@@ -43,6 +46,8 @@ const CustomImageListItem = React.memo(function CustomImageListItem({
           justifyContent: 'center',
           alignItems: 'center',
           background: 'rgba(250, 250, 250, 0.5)',
+          width: '85px',
+          height: '85px',
         }}
       >
         {!characterData?.images?.icon && (
@@ -54,16 +59,25 @@ const CustomImageListItem = React.memo(function CustomImageListItem({
           />
         )}
         {characterData?.images?.icon && (
-          <img
-            src={characterData?.images?.icon}
-            srcSet={characterData?.images?.icon}
-            alt={name}
-            loading="lazy"
-            style={{
-              width: '85px',
-              height: '85px',
+          <Badge
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
             }}
-          />
+            badgeContent={<CharacterElement element={characterData?.element} />}
+          >
+            <img
+              src={characterData?.images?.icon}
+              srcSet={characterData?.images?.icon}
+              alt={name}
+              loading="lazy"
+              style={{
+                width: '85px',
+                height: '85px',
+                background: getCharacterBackgroundColor(characterData?.rarity),
+              }}
+            />
+          </Badge>
         )}
       </Paper>
     </ImageListItem>

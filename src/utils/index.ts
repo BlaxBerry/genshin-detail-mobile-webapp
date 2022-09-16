@@ -36,3 +36,19 @@ export const getElementColor = (element: string): string => {
       return ''
   }
 }
+
+/**
+ * 获取角色的背景色
+ * @param rarity 星级
+ * @returns
+ */
+export const getCharacterBackgroundColor = (rarity: string): string => {
+  switch (rarity) {
+    case '5':
+      return '#a37b42'
+    case '4':
+      return '#8a78b5'
+    default:
+      return ''
+  }
+}

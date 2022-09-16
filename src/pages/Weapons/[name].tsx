@@ -45,8 +45,8 @@ export default function WeaponDetail() {
         )}
         {weaponData?.name && (
           <>
-            <span>{weaponData?.effectname}</span>
             <div style={{ fontSize: '24px' }}>{weaponData?.name}</div>
+            <span style={{ fontSize: '0.8rem' }}>{weaponData?.effectname}</span>
           </>
         )}
 

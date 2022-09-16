@@ -1,15 +1,7 @@
-import React, { Fragment, useState } from 'react'
-import ReactMarkdown from 'react-markdown'
+import React, { useState } from 'react'
 import Box from '@mui/material/Box'
 import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemText from '@mui/material/ListItemText'
-import ListItemAvatar from '@mui/material/ListItemAvatar'
-import Avatar from '@mui/material/Avatar'
-import { getElementColor } from '../../../utils'
-import Divider from '@mui/material/Divider'
 import { TabPanel1, TabPanel2, TabPanel3, TabPanel4 } from '../../Characters'
 
 interface CustomTabsProps {

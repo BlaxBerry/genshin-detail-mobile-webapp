@@ -7,6 +7,9 @@ import Paper from '@mui/material/Paper'
 import Skeleton from '@mui/material/Skeleton'
 import { Troubleshoot } from '@mui/icons-material'
 import { fetchWeapon } from '../../../apis'
+import { getCharacterBackgroundColor } from '../../../utils'
+import CharacterWeaponType from '../Badges/CharacterWeaponType'
+import Badge from '@mui/material/Badge'
 
 interface ImageListProps {
   dataSource: string[]
@@ -54,16 +57,33 @@ const CustomImageListItem = React.memo(function CustomImageListItem({
           />
         )}
         {weaponsData?.images?.icon && (
-          <img
-            src={weaponsData?.images?.icon}
-            srcSet={weaponsData?.images?.icon}
-            alt={name}
-            loading="lazy"
-            style={{
-              width: '85px',
-              height: '85px',
+          <Badge
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
             }}
-          />
+            badgeContent={
+              <CharacterWeaponType
+                weaponType={weaponsData?.weapontype}
+                style={{
+                  width: '1.2rem',
+                  height: '1.2rem',
+                }}
+              />
+            }
+          >
+            <img
+              src={weaponsData?.images?.icon}
+              srcSet={weaponsData?.images?.icon}
+              alt={name}
+              loading="lazy"
+              style={{
+                width: '85px',
+                height: '85px',
+                background: getCharacterBackgroundColor(weaponsData?.rarity),
+              }}
+            />
+          </Badge>
         )}
       </Paper>
     </ImageListItem>

@@ -13,12 +13,13 @@ export const ColorModeContext = createContext({
 export default function CustomerThemeProvider({
   children,
 }: CustomerThemeProviderProps): JSX.Element {
-  const [mode, setMode] = useState<'light' | 'dark'>('light')
+  // 默认主题
+  const [mode, setMode] = useState<'light' | 'dark'>('dark')
 
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'))
+        setMode((prevMode) => (prevMode === 'dark' ? 'light' : 'dark'))
       },
     }),
     []
