@@ -9,7 +9,7 @@ export default function Home() {
       src={'http://hive.indienova.com/ranch/gamedb/2020/02/assets/ast-2523265-hKgPYA.png'}
     /> */}
 
-      <h3 style={{ margin: 0 }}>近期活动</h3>
+      <h3 style={{ margin: '0 0 10px' }}>近期活动</h3>
       <Box
         component="img"
         sx={{ width: '100%' }}

@@ -32,6 +32,10 @@ export default function Header() {
   const theme = useTheme()
   const colorMode = React.useContext(ColorModeContext)
 
+  const goGithub = () => {
+    window.open('https://github.com/BlaxBerry/genshin-detail-mobile-webapp')
+  }
+
   return (
     <AppBar
       position="static"
@@ -85,8 +89,14 @@ export default function Header() {
             >
               <ThemeChanger />
             </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <IconButton sx={{ mr: 1 }} color="inherit">
+            <MenuItem
+              onClick={() => {
+                goGithub()
+                handleClose()
+              }}
+              color="inherit"
+            >
+              <IconButton sx={{ mr: 1 }}>
                 <GitHubIcon />
               </IconButton>
               Github
